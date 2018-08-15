@@ -1,0 +1,16 @@
+<html>
+
+<head>
+  {% if title %}
+  <title>{{ title }} - ToyMaker</title>
+  {% else %}
+  <title>Welcome to ToyMaker</title>
+  {% endif %}
+</head>
+
+<body>
+  <div>ToyMaker: <a href="/index">Home</a></div>
+  <hr> {% block content %}{% endblock %}
+</body>
+
+</html>
