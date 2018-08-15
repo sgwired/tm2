@@ -1,0 +1,2 @@
+FLASK_APP=toymaker.py
+FLASK_ENV=development
