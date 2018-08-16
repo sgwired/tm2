@@ -1,1 +1,11 @@
 venv/
+*.pyc
+.DS_STORE
+
+migrations/alembic.ini
+migrations/env.py
+migrations/script.py.mako
+__pycache__/
+*.py[cod]
+*$py.class
+app/__pycache__/

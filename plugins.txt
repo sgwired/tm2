@@ -1,0 +1,8 @@
+pip install flask-wtf
+pip install flask-sqlalchemy
+pip install flask-migrate
+
+not a pip install
+flask db init
+flask db migrate -m "users table"
+flask db upgrade or flask db downgrade
