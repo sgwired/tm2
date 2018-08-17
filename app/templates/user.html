@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %}
+<table>
+    <tr valign="top">
+        <td>User:</td>
+
+        <td>
+            {{ user.username }}
+        </td>
+        <td>
+            <img src="https://ipsumimage.appspot.com/140x100,ff7700" />
+        </td>
+    </tr>
+</table>
+
+<hr>
+
+<table>
+    <thead>
+        <tr>
+            <th>Toy</th>
+            <th>Image</th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for toy in toys %}
+        <tr valign="top">
+            <td> {{ toy.name }}</td>
+            <td colspan="2">
+                <a href="#">More</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}
