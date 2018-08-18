@@ -29,7 +29,20 @@ class RegistrationForm(FlaskForm):
 
 
 class EditProfileForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
     username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
+    address1 = StringField('Address1', validators=[DataRequired()])
+    address2 = StringField('Address2', validators=[DataRequired()])
+    city = StringField('City', validators=[DataRequired()])
+    state = StringField('State', validators=[DataRequired()])
+    postal_code = StringField('Postal Code', validators=[DataRequired()])
+    phone = StringField('Phone', validators=[DataRequired()])
+    website = StringField('Website', validators=[Length(min=0, max=140)])
+    facebook = StringField('Facebook', validators=[Length(min=0, max=140)])
+    twitter = StringField('Twitter', validators=[Length(min=0, max=140)])
+    instagram = StringField('Instagram', validators=[Length(min=0, max=140)])
+    company = StringField('Company', validators=[Length(min=0, max=140)])
     about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
     submit = SubmitField('Submit')
 

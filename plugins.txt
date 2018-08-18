@@ -4,7 +4,7 @@ pip install flask-migrate
 pip install python-dotenv
 pip install flask-login
 pip install gunicorn
-
+pip install flask-bootstrap
 
 not a pip install
 flask db init
