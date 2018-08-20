@@ -1,31 +1,59 @@
-{% extends 'bootstrap/base.html' %}
-<html>
+{% extends 'bootstrap/base.html' %} {% block title %} {% if title %}{{ title }} - ToyMaker{% else %}Welcome to ToyMaker{%
+endif %} {% endblock %} {% block navbar %}
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('main.index') }}">ToyMaker</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('main.index') }}">{{ ('Home') }}</a></li>
+      </ul>
+      {% if g.search_form %}
+      <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
+        <div class="form-group">
+          {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}
+        </div>
+      </form>
+      {% endif %}
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_anonymous %}
+        <li><a href="{{ url_for('auth.login') }}">{{ ('Login') }}</a></li>
+        <li>
+          <a href="{{ url_for('auth.register') }}">Click to Register!</a>
+        </li>
+        {% else %}
 
-<head>
-  {% if title %}
-  <title>{{ title }} - ToyMaker</title>
-  {% else %}
-  <title>Welcome to ToyMaker</title>
-  {% endif %}
-</head>
-
-<body>
-  <div>Toy Maker:
-    <a href="{{ url_for('main.index') }}">Home</a>
-    {% if current_user.is_anonymous %}
-    <a href="{{ url_for('auth.login') }}">Login</a>
-    {% else %}
-    <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
-    <a href="{{ url_for('auth.logout') }}">Logout</a>
-    {% endif %}
+        <li><a href="{{ url_for('main.user', username=current_user.username) }}">{{ ('Profile') }}</a></li>
+        <li><a href="{{ url_for('auth.logout') }}">{{ ('Logout') }}</a></li>
+        {% endif %}
+      </ul>
+    </div>
   </div>
-  <hr> {% with messages = get_flashed_messages() %} {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} {% endwith %} {% block content %}{% endblock %}
-</body>
-
-</html>
+</nav>
+{% endblock %} {% block content %}
+<div class="container">
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+  <div class="alert alert-info" role="alert">{{ message }}</div>
+  {% endfor %} {% endif %} {% endwith %} {# application content needs to be provided in the app_content block #} {% block app_content
+  %}{% endblock %}
+</div>
+<div class="container">
+  <footer class="footer text-center">
+    <div class="container">
+      <ul class="list-inline">
+        <li class="text-muted">Jakks Pacific Inc. ToyMaker &copy; 2018</li>
+        <li><a href="{{ url_for('main.privacy') }}">Privacy Policy</a></li>
+        <li><a href="{{ url_for('main.terms') }}">Terms of Service</a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+{% endblock %}
