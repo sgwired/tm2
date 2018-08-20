@@ -1,3 +1,3 @@
 FLASK_APP=toymaker.py
-#FLASK_ENV=development
-#FLASK_DEBUG=0
+FLASK_ENV=development
+FLASK_DEBUG=1
